@@ -1,34 +1,13 @@
-import 'isomorphic-fetch'
 import React from 'react'
-import withRedux from 'next-redux-wrapper'
+import Typography from '@material-ui/core/Typography'
+import Layout from '../components/Layout'
 
-import Fork from '../components/Fork'
-import Todo from '../components/Todo'
-
-import initStore from '../utils/store'
-
-class Index extends React.Component {
-	static async getInitialProps({ store }) {
-		// Adding a default/initialState can be done as follows:
-		// store.dispatch({ type: 'ADD_TODO', text: 'It works!' });
-		const res = await fetch(
-			'https://api.github.com/repos/ooade/NextSimpleStarter'
-		)
-		const json = await res.json()
-		return { stars: json.stargazers_count }
-	}
-
-	render() {
-		const { stars } = this.props
-		return (
-			<div>
-				<Fork stars={stars} />
-				<div>
-					<Todo />
-				</div>
-			</div>
-		)
-	}
+const Index = (props) => {
+  return (
+		<Layout title='Home' headTitle='Home - App Name'>
+			<Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>
+		</Layout>
+  )
 }
 
-export default withRedux(initStore)(Index)
+export default Index
